@@ -10,7 +10,7 @@
     font-family: 'Roboto', sans-serif; */
 
 
-:root{
+:root {
     --base: #11121a;
     --line: #42434a;
     --hover: #222533;
@@ -18,15 +18,18 @@
     --accent: #5e63ff;
     --secondary-text: #b0b3c1;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
-html{
+
+html {
     font-family: 'Poppins', sans-serif;
     line-height: 1.5rem;
 }
-body{
+
+body {
     min-height: 100vh;
     min-height: 100dvh;
     background-color: var(--base);
@@ -34,7 +37,8 @@ body{
     display: grid;
     grid-template-columns: auto 1fr;
 }
-#sidebar{
+
+#sidebar {
     box-sizing: border-box;
     height: 100vh;
     width: 250px;
@@ -50,30 +54,38 @@ body{
     overflow: hidden;
     text-wrap: nowrap;
 }
-#sidebar.close{  /* Js Part*/
+
+#sidebar.close {
+    /* Js Part*/
     padding: 5px;
     width: 60px;
 }
 
-#sidebar ul{
+#sidebar ul {
     list-style: none;
 }
-#sidebar > ul > li:first-child{
+
+#sidebar>ul>li:first-child {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 16px;
-    .logo{
+
+    .logo {
         font-weight: 600;
     }
 }
-#sidebar ul li.active a{
+
+#sidebar ul li.active a {
     color: var(--accent);
 
-    svg{
+    svg {
         fill: var(--accent);
     }
 }
-#sidebar a, #sidebar .dropdown-btn, #sidebar .logo{
+
+#sidebar a,
+#sidebar .dropdown-btn,
+#sidebar .logo {
     border-radius: .5em;
     padding: .85em;
     text-decoration: none;
@@ -82,7 +94,8 @@ body{
     align-items: center;
     gap: 1em;
 }
-.dropdown-btn{
+
+.dropdown-btn {
     width: 100%;
     text-align: left;
     background: none;
@@ -90,36 +103,46 @@ body{
     font: inherit;
     cursor: pointer;
 }
-#sidebar svg{
+
+#sidebar svg {
     flex-shrink: 0;
     fill: var(--text);
 }
-#sidebar a span, #sidebar .dropdown-btn span{
+
+#sidebar a span,
+#sidebar .dropdown-btn span {
     flex-grow: 1;
 }
-#sidebar a:hover, #sidebar .dropdown-btn:hover{
+
+#sidebar a:hover,
+#sidebar .dropdown-btn:hover {
     background-color: var(--hover);
 }
-#sidebar .sub-menu{
+
+#sidebar .sub-menu {
     /* display: none; */
     display: grid;
     grid-template-rows: 0fr;
     transition: 300ms ease-in-out;
 
-    > div{
+    >div {
         overflow: hidden;
     }
 }
-#sidebar .sub-menu.show{
+
+#sidebar .sub-menu.show {
     grid-template-rows: 1fr;
 }
-.rotate svg:last-child{
+
+.rotate svg:last-child {
     rotate: 180deg;
 }
-#sidebar .sub-menu a{
+
+#sidebar .sub-menu a {
     padding-left: 2em;
 }
-#toggle-btn{
+
+#toggle-btn {
     margin-left: auto;
     padding: 1em;
     border: none;
@@ -127,11 +150,12 @@ body{
     background: none;
     cursor: pointer;
 
-    svg{
+    svg {
         transition: rotate 150ms ease;
     }
 }
-#toggle-btn:hover{
+
+#toggle-btn:hover {
     background-color: var(--hover);
 }
 
@@ -141,21 +165,95 @@ body{
 
 
 
-main{
+main {
     padding: min(30px, 7%);
 }
-main p{
+
+main p {
     color: var(--secondary-text);
     margin-top: 5px;
     margin-bottom: 15px;
 }
-.container{
+
+.container {
     border: 1px solid var(--line);
     border-radius: 1em;
     margin-bottom: 20px;
     padding: min(3em, 15%);
 }
 
-@media(max-width: 800px){
-    
+@media(max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 2em 1em 60px 1em;
+    }
+
+    .container {
+        border: none;
+        padding: 0;
+    }
+
+    #sidebar {
+        height: 60px;
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid var(--line);
+        padding: 0;
+        position: fixed;
+        top: unset;
+        bottom: 0;
+
+        > ul{
+            padding: 0;
+            display: grid;
+            grid-template-columns: 60px;
+            grid-auto-flow: column;
+            align-items: center;
+            overflow-x: scroll;
+        }
+        ul li{
+            height: 100%;
+        }
+        ul a, ul .dropdown-btn{
+            width: 60px;
+            height: 60px;
+            padding: 0;
+            border-radius: 0;
+            justify-content: center;
+        }
+
+
+        ul li span, ul li:first-child, .dropdown-btn svg:last-child {
+            display: none;
+        }
+        ul li .sub-menu.show{
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            box-sizing: border-box;
+            height: 60px;
+            width: 100%;
+            background-color: var(--hover);
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: center;
+
+            > div{
+                overflow-x: auto;
+            }
+
+            li{
+                display: inline-flex;
+            }
+            a{
+                box-sizing: border-box;
+                padding: 1em;
+                width: auto;
+                justify-content: center;
+            }
+        }
+    }
 }
